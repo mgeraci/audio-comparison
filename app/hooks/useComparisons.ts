@@ -10,8 +10,7 @@ const FILES = [
 ];
 
 const useComparison = () => {
-    const [orderedFiles, setOrderedFiles] = useState<string[]>();
-    const [mapping, setMapping] = useState<Mapping>();
+    const [orderedFiles, setOrderedFiles] = useState<string[]>([]);
     const [pairings, setPairings] = useState<Pairing[]>();
 
     const runInitialSetup = () => {
@@ -21,7 +20,6 @@ const useComparison = () => {
 
     return {
         orderedFiles,
-        mapping,
         pairings,
         runInitialSetup,
     };
