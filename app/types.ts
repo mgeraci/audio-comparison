@@ -1,2 +1,1 @@
-export type Mapping = Record<string, string>;
-export type Pairing = Record<string, string>;
+export type Pairing = [string, string];

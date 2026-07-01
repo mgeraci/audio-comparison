@@ -1,3 +1,5 @@
+import { Pairing } from "./types";
+
 // https://dev.to/tanvir_azad/fisher-yates-shuffle-the-right-way-to-randomize-an-array-4d2p
 export function shuffle(array: any) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -26,3 +28,15 @@ export function getIdentifierForFile(file: string, files: string[]): string {
 
   return result;
 };
+
+export function getPairs(arr: string[]): Pairing[] {
+  const pairs: Pairing[] = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      pairs.push([arr[i], arr[j]]);
+    }
+  }
+
+  return pairs;
+}

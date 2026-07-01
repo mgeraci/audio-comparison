@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Mapping, Pairing } from "../types";
-import { shuffle } from "../util"
+import { Pairing } from "../types";
+import { shuffle, getPairs } from "../util"
 
 const FILES = [
     "cockrum.aif",
@@ -16,6 +16,7 @@ const useComparison = () => {
     const runInitialSetup = () => {
         const shuffledFiles = shuffle([...FILES]);
         setOrderedFiles(shuffledFiles);
+        setPairings(shuffle(getPairs(shuffledFiles)));
     };
 
     return {

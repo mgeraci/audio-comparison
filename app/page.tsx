@@ -4,7 +4,7 @@ import useComparison from "./hooks/useComparisons";
 import { getIdentifierForFile } from "./util"
 
 export default function Home() {
-  const { runInitialSetup, orderedFiles } = useComparison();
+  const { runInitialSetup, orderedFiles, pairings } = useComparison();
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -18,7 +18,10 @@ export default function Home() {
           </button>
           <br />
           {orderedFiles.map((file) => (
-            <span>{file} ({getIdentifierForFile(file, orderedFiles)})</span>
+            <span key={file}>{file} ({getIdentifierForFile(file, orderedFiles)})</span>
+          ))}
+          {pairings?.map((pairing, i) => (
+            <span key={i}>{pairing[0]} vs. {pairing[1]}</span>
           ))}
         </div>
       </main>
