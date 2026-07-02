@@ -35,13 +35,13 @@ export default function Home() {
               <span>{currentPairing[0]} vs. {currentPairing[1]}</span>
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => endRound(currentPairing[0])}
+              onClick={() => endRound(currentPairing, currentPairing[0])}
             >
               choose left winner
             </button>
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => endRound(currentPairing[1])}
+              onClick={() => endRound(currentPairing, currentPairing[1])}
             >
               choose right winner
             </button>

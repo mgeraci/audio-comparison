@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Pairing } from "../types";
+import { AppState, Pairing, Score } from "../types";
 import { shuffle, getPairs } from "../util"
 
 const FILES = [
@@ -10,8 +10,10 @@ const FILES = [
 ];
 
 const useComparison = () => {
+    const [appState, setAppState] = useState<AppState>(AppState.initial)
     const [orderedFiles, setOrderedFiles] = useState<string[]>([]);
     const [pairings, setPairings] = useState<Pairing[]>([]);
+    const [scores, setScores] = useState<Score[]>([]);
     const [index, setIndex] = useState(0);
 
     const runInitialSetup = () => {
@@ -21,12 +23,13 @@ const useComparison = () => {
         setIndex(0);
     };
 
-    const endRound = (file: string) => {
+    const endRound = (pairing: Pairing, winner: string) => {
         if (index >= pairings.length) {
+            setAppState(AppState.results)
             return;
         }
 
-        // TODO: save score
+        setScores([...scores, { pairing, winner }])
         setIndex(index + 1)
     };
 
@@ -36,6 +39,7 @@ const useComparison = () => {
         orderedFiles,
         pairings,
         currentPairing,
+        scores,
         index,
 
         runInitialSetup,
