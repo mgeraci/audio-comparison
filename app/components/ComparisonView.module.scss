@@ -1,0 +1,33 @@
+@import "../variables.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter;
+  margin-top: $gutter;
+}
+
+.title {
+  @include h2;
+}
+
+.samples {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: $gutter;
+}
+
+.sample {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter / 2;
+  align-items: center;
+  padding: $gutter;
+  border: 1px solid $secondary;
+  border-radius: 12px;
+}
+
+.voteButton {
+  @include secondary-button;
+}

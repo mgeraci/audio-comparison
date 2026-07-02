@@ -1,4 +1,7 @@
+import classnames from "classnames";
 import { Score } from "../types";
+
+import styles from "./ResultsView.module.scss";
 
 interface Props {
   startOver: () => void;
@@ -25,41 +28,43 @@ const distillResults = (scores: Score[]) => {
 
 const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
   return (
-    <div>
-      Results:
-      <br />
-      <dl>
-        {distillResults(scores).map((score) => (
+    <div className={styles.wrapper}>
+      <h2 className={styles.title}>Results</h2>
+      <div className={styles.results}>
+        {distillResults(scores).map((score, i) => (
           <div key={`${score[0]}-${score[1]}`}>
-            <dt>{score[0]}</dt>
-            <dd>{score[1]}</dd>
+            {i === 0 && "🏆 "}
+            {score[0]} ({score[1]} points)
           </div>
         ))}
-      </dl>
-      <br />
-      matchup details:
-      <br />
-      {scores.map(({ pairing, winner }) => (
-        <div key={`${pairing[0]}-${pairing[1]}`}>
-          <span
-            style={{ fontWeight: pairing[0] === winner ? "bold" : "regular" }}
-          >
-            {pairing[0]}
-          </span>
-          <span>&nbsp;vs.&nbsp;</span>
-          <span
-            style={{ fontWeight: pairing[1] === winner ? "bold" : "regular" }}
-          >
-            {pairing[1]}
-          </span>
-          <br />
-        </div>
-      ))}
-      <br />
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => startOver()}
-      >
+      </div>
+
+      <h2 className={styles.title}>Details</h2>
+
+      <div className={styles.details}>
+        {scores.map(({ pairing, winner }) => (
+          <div key={`${pairing[0]}-${pairing[1]}`}>
+            <span
+              className={classnames({
+                [styles.matchupWinner]: pairing[0] === winner,
+              })}
+            >
+              {pairing[0]}
+            </span>
+            <span>&nbsp;vs.&nbsp;</span>
+            <span
+              className={classnames({
+                [styles.matchupWinner]: pairing[1] === winner,
+              })}
+            >
+              {pairing[1]}
+            </span>
+            <br />
+          </div>
+        ))}
+      </div>
+
+      <button className={styles.startOver} onClick={() => startOver()}>
         start over
       </button>
     </div>

@@ -1,0 +1,39 @@
+@import "../variables.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $gutter;
+}
+
+.title {
+  @include h2;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter / 3;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter / 2;
+  margin-top: -$gutter / 2;
+}
+
+.matchupWinner {
+  color: $secondary;
+  font-weight: bold;
+
+  &:before {
+    content: "🏆";
+    margin-right: 4px;
+  }
+}
+
+.startOver {
+  @include primary-button;
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import { AppState } from "../types";
 
+import styles from "./InitialView.module.scss";
+
 interface Props {
   runInitialSetup: () => void;
   appState: AppState;
@@ -8,19 +10,19 @@ interface Props {
 
 const InitialView: React.FC<Props> = ({ runInitialSetup, appState }) => {
   return (
-    <div>
+    <div className={styles.wrapper}>
       <span>
+        Help Michael choose the bridge on his banjo! He recorded a snippet of
+        the same song using a handful of bridges, and this app will pit each
+        pair against each other, let you vote, then show the winner.
+        <br />
+        <br />
         Press the button below to randomize the samples and start voting, or to
         reset once you have begun.
       </span>
 
-      <br />
-
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={runInitialSetup}
-      >
-        {appState === AppState.initial ? "initialize" : "reset"}
+      <button className={styles.button} onClick={runInitialSetup}>
+        {appState === AppState.initial ? "Let’s go!" : "Reset"}
       </button>
     </div>
   );
