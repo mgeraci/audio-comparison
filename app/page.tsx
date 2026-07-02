@@ -1,7 +1,6 @@
-'use client'
+"use client";
 
 import useComparison from "./hooks/useComparisons";
-import { getIdentifierForFile } from "./util"
 import { AppState } from "./types";
 
 import InitialView from "./components/InitialView";
@@ -11,7 +10,6 @@ import ResultsView from "./components/ResultsView";
 export default function Home() {
   const {
     appState,
-    orderedFiles,
     pairings,
     currentPairing,
     scores,
@@ -42,10 +40,7 @@ export default function Home() {
           )}
 
           {appState === AppState.results && (
-            <ResultsView
-              startOver={startOver}
-              scores={scores}
-            />
+            <ResultsView startOver={startOver} scores={scores} />
           )}
         </div>
       </main>

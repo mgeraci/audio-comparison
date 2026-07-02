@@ -1,34 +1,25 @@
 import { Pairing } from "./types";
 
-// https://dev.to/tanvir_azad/fisher-yates-shuffle-the-right-way-to-randomize-an-array-4d2p
-export function shuffle(array: any) {
+/**
+ * Shuffles the elements of an array using the Fisher–Yates algorithm.
+ *
+ * @param array - The array to shuffle.
+ * @returns A new array containing the shuffled elements.
+ */
+export function shuffle<T>(array: T[]): T[] {
   for (let i = array.length - 1; i > 0; i--) {
-    // Generate a random index j such that 0 ≤ j ≤ i
     const j = Math.floor(Math.random() * (i + 1));
-
-    // Swap elements at indices i and j
     [array[i], array[j]] = [array[j], array[i]];
   }
+
   return array;
 }
 
-// 1 - a
-// 26 - z
-// 27 - aa
-// etc.
-export function getIdentifierForFile(file: string, files: string[]): string {
-  const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-  const index = files.findIndex((f) => f === file);
-  const repeatCount = Math.floor(index / letters.length) + 1;
-  const letterIndex = index % letters.length;
-
-  const result = Array.from({ length: repeatCount }).reduce<string>((acc, _, i) => {
-    return acc + letters[letterIndex];
-  }, "");
-
-  return result;
-};
-
+/**
+ * Gets each pairing of the elements in the list.
+ * @param array - The elements to pair off
+ * @returns An array of Pairing types
+ */
 export function getPairs(arr: string[]): Pairing[] {
   const pairs: Pairing[] = [];
 
