@@ -20,22 +20,29 @@ const useComparison = () => {
         const shuffledFiles = shuffle([...FILES]);
         setOrderedFiles(shuffledFiles);
         setPairings(shuffle(getPairs(shuffledFiles)));
+        setScores([]);
         setIndex(0);
+        setAppState(AppState.comparing);
     };
 
     const endRound = (pairing: Pairing, winner: string) => {
-        if (index >= pairings.length) {
-            setAppState(AppState.results)
-            return;
-        }
-
         setScores([...scores, { pairing, winner }])
-        setIndex(index + 1)
+
+        if (index + 1 >= pairings.length) {
+            setAppState(AppState.results)
+        } else {
+            setIndex(index + 1)
+        }
+    };
+
+    const startOver = () => {
+        setAppState(AppState.initial);
     };
 
     const currentPairing = pairings[index];
 
     return {
+        appState,
         orderedFiles,
         pairings,
         currentPairing,
@@ -44,6 +51,7 @@ const useComparison = () => {
 
         runInitialSetup,
         endRound,
+        startOver,
     };
 };
 
