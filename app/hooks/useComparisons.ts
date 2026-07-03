@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AppState, Pairing, Score } from "../types";
 import { shuffle, getPairs } from "../util";
 
-const FILES = ["cockrum.aif", "crescent.aif", "original.aif", "goldtone.aif"];
+const FILES = ["cockrum.wav", "crescent.wav", "original.wav", "goldtone.wav"];
 
 const useComparison = () => {
   const [appState, setAppState] = useState<AppState>(AppState.initial);

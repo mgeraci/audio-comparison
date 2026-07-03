@@ -1,0 +1,35 @@
+@import "../variables.scss";
+
+.sample {
+  display: flex;
+  flex-direction: column;
+  gap: $gutter;
+  align-items: center;
+  padding: $gutter;
+  background: rgba($secondary, 0.2);
+  border: 1px solid $secondary;
+  border-radius: 12px;
+}
+
+.playbackControls {
+  display: flex;
+  gap: 6px;
+}
+
+.playbackButton {
+  @include primary-button;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  padding: 5px;
+}
+
+.backButtonPipe {
+  position: relative;
+  bottom: 3px;
+  font-size: 11px;
+}
+
+.voteButton {
+  @include secondary-button;
+}

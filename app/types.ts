@@ -9,3 +9,8 @@ export type Score = {
   pairing: Pairing;
   winner: string;
 };
+export const PlaybackType = {
+  a: "a",
+  b: "b",
+};
+export type PlaybackType = (typeof PlaybackType)[keyof typeof PlaybackType];
