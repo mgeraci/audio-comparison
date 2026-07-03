@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Pairing, PlaybackType } from "../types";
 
 import styles from "./ComparisonView.module.scss";
 import SampleView from "./SampleView";
+import classNames from "classnames";
 
 interface Props {
   pairing: Pairing;
@@ -17,6 +18,7 @@ const ComparisonView: React.FC<Props> = ({
   total,
   endRound,
 }) => {
+  const [playingSample, setPlayingSample] = useState<PlaybackType>();
   const sampleA = useRef<HTMLAudioElement>(null);
   const sampleB = useRef<HTMLAudioElement>(null);
 
@@ -25,6 +27,7 @@ const ComparisonView: React.FC<Props> = ({
       return;
     }
 
+    setPlayingSample(playbackType);
     sampleA.current.volume = playbackType === PlaybackType.a ? 1 : 0;
     sampleB.current.volume = playbackType === PlaybackType.b ? 1 : 0;
 
@@ -37,6 +40,7 @@ const ComparisonView: React.FC<Props> = ({
       return;
     }
 
+    setPlayingSample(undefined);
     sampleA.current.pause();
     sampleB.current.pause();
     sampleA.current.currentTime = 0;
@@ -61,6 +65,7 @@ const ComparisonView: React.FC<Props> = ({
         <SampleView
           sample={pairing[0]}
           ref={sampleA}
+          isPlaying={playingSample === PlaybackType.a}
           play={() => play(PlaybackType.a)}
           stop={stop}
           resetTime={resetTime}
@@ -69,11 +74,13 @@ const ComparisonView: React.FC<Props> = ({
           }}
         />
 
-        <span className={styles.versus}>vs.</span>
+        <span className={classNames(styles.versus, styles.big)}>versus</span>
+        <span className={classNames(styles.versus, styles.small)}>vs.</span>
 
         <SampleView
           sample={pairing[1]}
           ref={sampleB}
+          isPlaying={playingSample === PlaybackType.b}
           play={() => play(PlaybackType.b)}
           stop={stop}
           resetTime={resetTime}

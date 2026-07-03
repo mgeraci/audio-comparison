@@ -27,6 +27,14 @@ const distillResults = (scores: Score[]) => {
   return sorted;
 };
 
+const getSampleDisplayName = (sample: string) => {
+  if (sample.indexOf(".") === -1) {
+    return sample;
+  }
+
+  return sample.split(".")[0];
+};
+
 const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
   const distilledResults = useMemo(() => distillResults(scores), [scores]);
   const highScore = distilledResults[0][1];
@@ -40,7 +48,7 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
             key={sample}
             className={classnames({ [styles.winner]: points === highScore })}
           >
-            {sample} ({points} points)
+            {getSampleDisplayName(sample)} ({points} points)
           </div>
         ))}
       </div>
@@ -55,7 +63,7 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
                 [styles.winner]: pairing[0] === winner,
               })}
             >
-              {pairing[0]}
+              {getSampleDisplayName(pairing[0])}
             </span>
             <span>&nbsp;vs.&nbsp;</span>
             <span
@@ -63,7 +71,7 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
                 [styles.winner]: pairing[1] === winner,
               })}
             >
-              {pairing[1]}
+              {getSampleDisplayName(pairing[1])}
             </span>
             <br />
           </div>

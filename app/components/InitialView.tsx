@@ -17,8 +17,8 @@ const InitialView: React.FC<Props> = ({ runInitialSetup, appState }) => {
         pair against each other, let you vote, then show the winner.
         <br />
         <br />
-        Press the button below to randomize the samples and start voting, or to
-        reset once you have begun.
+        Grab some nice headphones, then press the button below to randomize the
+        samples and start voting (or to reset once you have begun).
       </span>
 
       <button className={styles.button} onClick={runInitialSetup}>

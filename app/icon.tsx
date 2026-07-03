@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/og";
-import styles from "./icon.module.scss";
 
 // Image metadata
 export const size = {

@@ -1,14 +1,23 @@
 @import "../variables.scss";
 
 .sample {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: $gutter;
   align-items: center;
-  padding: $gutter;
+  padding: 5vw;
   background: rgba($secondary, 0.2);
   border: 1px solid $secondary;
   border-radius: 12px;
+
+  @media screen and (max-width: 600px) {
+    padding: $gutter;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding: $gutter * 3;
+  }
 }
 
 .playbackControls {
@@ -32,4 +41,16 @@
 
 .voteButton {
   @include secondary-button;
+}
+
+.speakerIcon {
+  position: absolute;
+  top: $gutter / 2;
+  right: $gutter / 2;
+  width: 24px;
+  height: 24px;
+
+  path {
+    stroke: $primary;
+  }
 }
