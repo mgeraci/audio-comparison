@@ -6,14 +6,12 @@ const FILES = ["cockrum.wav", "crescent.wav", "original.wav", "goldtone.wav"];
 
 const useComparison = () => {
   const [appState, setAppState] = useState<AppState>(AppState.initial);
-  const [orderedFiles, setOrderedFiles] = useState<string[]>([]);
   const [pairings, setPairings] = useState<Pairing[]>([]);
   const [scores, setScores] = useState<Score[]>([]);
   const [index, setIndex] = useState(0);
 
   const runInitialSetup = () => {
     const shuffledFiles = shuffle([...FILES]);
-    setOrderedFiles(shuffledFiles);
     setPairings(shuffle(getPairs(shuffledFiles)));
     setScores([]);
     setIndex(0);
@@ -38,7 +36,6 @@ const useComparison = () => {
 
   return {
     appState,
-    orderedFiles,
     pairings,
     currentPairing,
     scores,
