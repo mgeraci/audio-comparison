@@ -2,6 +2,7 @@ import classnames from "classnames";
 import { Score } from "../types";
 
 import styles from "./ResultsView.module.scss";
+import { useMemo } from "react";
 
 interface Props {
   startOver: () => void;
@@ -27,14 +28,19 @@ const distillResults = (scores: Score[]) => {
 };
 
 const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
+  const distilledResults = useMemo(() => distillResults(scores), [scores]);
+  const highScore = distilledResults[0][1];
+
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.title}>Results</h2>
       <div className={styles.results}>
-        {distillResults(scores).map((score, i) => (
-          <div key={`${score[0]}-${score[1]}`}>
-            {i === 0 && "🏆 "}
-            {score[0]} ({score[1]} points)
+        {distilledResults.map(([sample, points]) => (
+          <div
+            key={sample}
+            className={classnames({ [styles.winner]: points === highScore })}
+          >
+            {sample} ({points} points)
           </div>
         ))}
       </div>
@@ -46,7 +52,7 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
           <div key={`${pairing[0]}-${pairing[1]}`}>
             <span
               className={classnames({
-                [styles.matchupWinner]: pairing[0] === winner,
+                [styles.winner]: pairing[0] === winner,
               })}
             >
               {pairing[0]}
@@ -54,7 +60,7 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
             <span>&nbsp;vs.&nbsp;</span>
             <span
               className={classnames({
-                [styles.matchupWinner]: pairing[1] === winner,
+                [styles.winner]: pairing[1] === winner,
               })}
             >
               {pairing[1]}
