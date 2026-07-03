@@ -17,15 +17,15 @@ export function shuffle<T>(array: T[]): T[] {
 
 /**
  * Gets each pairing of the elements in the list.
- * @param array - The elements to pair off
- * @returns An array of Pairing types
+ * @param array - The elements to pair off.
+ * @returns An array of Pairing types.
  */
 export function getPairs(arr: string[]): Pairing[] {
   const pairs: Pairing[] = [];
 
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
-      pairs.push([arr[i], arr[j]]);
+      pairs.push(shuffle([arr[i], arr[j]]) as Pairing);
     }
   }
 

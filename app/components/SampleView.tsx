@@ -28,7 +28,6 @@ const SampleView: React.FC<Props> = ({
   return (
     <div className={styles.sample}>
       <audio ref={ref} src={`../audio/${sample}`} />
-
       <div className={styles.playbackControls}>
         <button className={styles.playbackButton} onClick={resetTime}>
           ◀<span className={styles.backButtonPipe}>|</span>
