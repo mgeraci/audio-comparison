@@ -70,6 +70,7 @@ const ComparisonView: React.FC<Props> = ({
           stop={stop}
           resetTime={resetTime}
           endRound={() => {
+            stop();
             endRound(pairing, pairing[0]);
           }}
         />
@@ -85,6 +86,7 @@ const ComparisonView: React.FC<Props> = ({
           stop={stop}
           resetTime={resetTime}
           endRound={() => {
+            stop();
             endRound(pairing, pairing[1]);
           }}
         />
