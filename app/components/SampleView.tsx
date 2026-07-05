@@ -2,7 +2,6 @@
 
 import { Ref, useState } from "react";
 import classNames from "classnames";
-import SpeakerIcon from "@/public/speaker.svg";
 
 // import speakerIcon from "../speaker.svg";
 import styles from "./SampleView.module.scss";
@@ -39,7 +38,12 @@ const SampleView: React.FC<Props> = ({
         <button className={styles.playbackButton} onClick={stop}>
           ■
         </button>
-        <button className={styles.playbackButton} onClick={play}>
+        <button
+          className={classNames(styles.playbackButton, {
+            [styles.isActive]: isPlaying,
+          })}
+          onClick={play}
+        >
           ▶
         </button>
       </div>
@@ -54,9 +58,7 @@ const SampleView: React.FC<Props> = ({
         choose winner
       </button>
 
-      {isPlaying && (
-        <SpeakerIcon alt="playing" className={styles.speakerIcon} />
-      )}
+      {isPlaying && <span className={styles.speakerIcon}>🔊</span>}
     </div>
   );
 };
