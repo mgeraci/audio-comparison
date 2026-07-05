@@ -5,6 +5,9 @@ import styles from "./layout.module.scss";
 
 export const metadata: Metadata = {
   title: "Audio Comparison",
+  icons: {
+    icon: "/audio-comparison/icon.png",
+  },
 };
 
 export default function RootLayout({
