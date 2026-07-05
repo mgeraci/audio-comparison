@@ -27,12 +27,12 @@ const distillResults = (scores: Score[]) => {
   return sorted;
 };
 
-const getSampleDisplayName = (sample: string) => {
+const getSampleDisplayName = (sample: string, isWinner: boolean) => {
   if (sample.indexOf(".") === -1) {
     return sample;
   }
 
-  return sample.split(".")[0];
+  return `${sample.split(".")[0]}${isWinner ? " 🏆" : ""}`;
 };
 
 const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
@@ -48,7 +48,8 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
             key={sample}
             className={classnames({ [styles.winner]: points === highScore })}
           >
-            {getSampleDisplayName(sample)} ({points} points)
+            {getSampleDisplayName(sample, points === highScore)} ({points}{" "}
+            points)
           </div>
         ))}
       </div>
@@ -63,7 +64,7 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
                 [styles.winner]: pairing[0] === winner,
               })}
             >
-              {getSampleDisplayName(pairing[0])}
+              {getSampleDisplayName(pairing[0], pairing[0] === winner)}
             </span>
             <span>&nbsp;vs.&nbsp;</span>
             <span
@@ -71,7 +72,7 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
                 [styles.winner]: pairing[1] === winner,
               })}
             >
-              {getSampleDisplayName(pairing[1])}
+              {getSampleDisplayName(pairing[1], pairing[1] === winner)}
             </span>
             <br />
           </div>

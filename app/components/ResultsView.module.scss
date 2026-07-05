@@ -22,11 +22,6 @@
 .winner {
   color: $secondary;
   font-weight: bold;
-
-  &:before {
-    content: "🏆";
-    margin-right: 4px;
-  }
 }
 
 .startOver {
