@@ -1,4 +1,4 @@
-@import "../variables.scss";
+@use "../variables" as *;
 
 .wrapper {
   display: flex;
@@ -14,8 +14,8 @@
 .results {
   display: flex;
   flex-direction: column;
-  gap: $gutter / 3;
-  margin-top: -$gutter / 2;
+  gap: calc($gutter / 3);
+  margin-top: calc($gutter * -0.5);
   margin-bottom: $gutter;
 }
 

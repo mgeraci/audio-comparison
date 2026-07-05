@@ -1,4 +1,5 @@
-@import "../variables.scss";
+@use "sass:color";
+@use "../variables" as *;
 
 .sample {
   position: relative;
@@ -7,7 +8,7 @@
   gap: $gutter;
   align-items: center;
   padding: 5vw;
-  background: mix($base, $secondary, 90%);
+  background: color.mix($base, $secondary, 90%);
   border: 1px solid $secondary;
   border-radius: 12px;
 
@@ -53,8 +54,8 @@
 
 .speakerIcon {
   position: absolute;
-  top: $gutter / 2;
-  right: $gutter / 2;
+  top: calc($gutter / 2);
+  right: calc($gutter / 2);
   width: 24px;
   height: 24px;
 

@@ -1,4 +1,4 @@
-@import "../variables.scss";
+@use "../variables" as *;
 
 .wrapper {
   display: flex;
@@ -24,7 +24,7 @@
   justify-content: space-around;
   align-items: center;
   margin-top: $gutter;
-  gap: $gutter / 2;
+  gap: calc($gutter / 2);
 
   &.current {
     position: relative;
