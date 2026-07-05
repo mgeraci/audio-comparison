@@ -1,5 +1,7 @@
 This is a React/Next.js project bootstrapped with `create-next-app`. It lets you play audio samples in random pairings to let you vote for favorites and find a winner.
 
+https://mgeraci.github.io/audio-comparison/
+
 | Comparison                                          | Results                                          |
 | --------------------------------------------------- | ------------------------------------------------ |
 | <img src="/screenshots/comparison.png" width="450"> | <img src="/screenshots/results.png" width="188"> |
@@ -9,7 +11,7 @@ This is a React/Next.js project bootstrapped with `create-next-app`. It lets you
 1. clone the repo and cd into it
 1. install dependencies with `yarn install`
 1. run the server with `yarn dev`
-1. open [http://localhost:3000](http://localhost:3000) with your browser to see the app
+1. open [http://localhost:3000/audio-comparison](http://localhost:3000/audio-comparison) with your browser to see the app
 
 ## Design
 
