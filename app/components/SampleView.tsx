@@ -30,7 +30,7 @@ const SampleView: React.FC<Props> = ({
 
   return (
     <div className={classNames(styles.sample, { [styles.winner]: isWinner })}>
-      <audio ref={ref} src={`../audio/${sample}`} />
+      <audio ref={ref} src={`/audio-comparison/audio/${sample}`} />
 
       <div className={styles.playbackControls}>
         <button className={styles.playbackButton} onClick={resetTime}>
