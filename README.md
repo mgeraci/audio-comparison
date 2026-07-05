@@ -2,7 +2,7 @@ This is a React/Next.js project bootstrapped with `create-next-app`. It lets you
 
 | Comparison                                          | Results                                          |
 | --------------------------------------------------- | ------------------------------------------------ |
-| <img src="/screenshots/comparison.png" width="300"> | <img src="/screenshots/results.png" width="100"> |
+| <img src="/screenshots/comparison.png" width="400"> | <img src="/screenshots/results.png" width="200"> |
 
 ## Development
 
