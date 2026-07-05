@@ -1,7 +1,7 @@
 This is a React/Next.js project bootstrapped with `create-next-app`. It lets you play audio samples in random pairings to let you vote for favorites and find a winner.
 
-![Comparison screen](/screenshots/comparison.png?raw=true "Comparison Screen")
-![Results](/screenshots/results.png?raw=true "Results")
+![Comparison screen](/screenshots/comparison.png?raw=true "Comparison Screen" | width=300)
+![Results](/screenshots/results.png?raw=true "Results" | width=100)
 
 ## Development
 

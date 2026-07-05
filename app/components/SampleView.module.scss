@@ -7,7 +7,7 @@
   gap: $gutter;
   align-items: center;
   padding: 5vw;
-  background: rgba($secondary, 0.2);
+  background: mix($base, $secondary, 90%);
   border: 1px solid $secondary;
   border-radius: 12px;
 
@@ -17,6 +17,10 @@
 
   @media screen and (min-width: 1200px) {
     padding: $gutter * 3;
+  }
+
+  &.winner {
+    background: $primary;
   }
 }
 

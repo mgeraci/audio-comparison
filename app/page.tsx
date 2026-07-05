@@ -13,7 +13,6 @@ export default function Home() {
   const {
     appState,
     pairings,
-    currentPairing,
     scores,
     index,
     runInitialSetup,
@@ -31,10 +30,10 @@ export default function Home() {
           <InitialView runInitialSetup={runInitialSetup} appState={appState} />
         )}
 
-        {appState === AppState.comparing && currentPairing !== undefined && (
+        {appState === AppState.comparing && pairings[index] !== undefined && (
           <ComparisonView
-            pairing={currentPairing}
-            currentIndex={index + 1}
+            pairings={pairings}
+            currentIndex={index}
             total={pairings.length}
             endRound={endRound}
           />

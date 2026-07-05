@@ -6,14 +6,14 @@ import SampleView from "./SampleView";
 import classNames from "classnames";
 
 interface Props {
-  pairing: Pairing;
+  pairings: Pairing[];
   currentIndex: number;
   total: number;
   endRound: (pairing: Pairing, winner: string) => void;
 }
 
 const ComparisonView: React.FC<Props> = ({
-  pairing,
+  pairings,
   currentIndex,
   total,
   endRound,
@@ -59,37 +59,51 @@ const ComparisonView: React.FC<Props> = ({
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.title}>
-        Current Matchup ({currentIndex}/{total})
+        Current Matchup ({currentIndex + 1}/{total})
       </h2>
-      <div className={styles.samples}>
-        <SampleView
-          sample={pairing[0]}
-          ref={sampleA}
-          isPlaying={playingSample === PlaybackType.a}
-          play={() => play(PlaybackType.a)}
-          stop={stop}
-          resetTime={resetTime}
-          endRound={() => {
-            stop();
-            endRound(pairing, pairing[0]);
-          }}
-        />
 
-        <span className={classNames(styles.versus, styles.big)}>versus</span>
-        <span className={classNames(styles.versus, styles.small)}>vs.</span>
+      <div className={styles.samplesContainer}>
+        {pairings.map((pairing, i) => (
+          <div
+            key={`${pairing[0]}-${pairing[1]}`}
+            className={classNames(styles.samples, {
+              [styles.current]: currentIndex == pairings.indexOf(pairing),
+              [styles.exit]: currentIndex > pairings.indexOf(pairing),
+            })}
+            style={{ zIndex: pairings.length - pairings.indexOf(pairing) }}
+          >
+            <SampleView
+              sample={pairing[0]}
+              ref={currentIndex === i ? sampleA : undefined}
+              isPlaying={playingSample === PlaybackType.a}
+              play={() => play(PlaybackType.a)}
+              stop={stop}
+              resetTime={resetTime}
+              endRound={() => {
+                stop();
+                endRound(pairing, pairing[0]);
+              }}
+            />
 
-        <SampleView
-          sample={pairing[1]}
-          ref={sampleB}
-          isPlaying={playingSample === PlaybackType.b}
-          play={() => play(PlaybackType.b)}
-          stop={stop}
-          resetTime={resetTime}
-          endRound={() => {
-            stop();
-            endRound(pairing, pairing[1]);
-          }}
-        />
+            <span className={classNames(styles.versus, styles.big)}>
+              versus
+            </span>
+            <span className={classNames(styles.versus, styles.small)}>vs.</span>
+
+            <SampleView
+              sample={pairing[1]}
+              ref={currentIndex === i ? sampleB : undefined}
+              isPlaying={playingSample === PlaybackType.b}
+              play={() => play(PlaybackType.b)}
+              stop={stop}
+              resetTime={resetTime}
+              endRound={() => {
+                stop();
+                endRound(pairing, pairing[1]);
+              }}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

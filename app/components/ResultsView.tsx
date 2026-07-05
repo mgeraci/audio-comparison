@@ -55,7 +55,7 @@ const ResultsView: React.FC<Props> = ({ startOver, scores }) => {
 
       <h2 className={styles.title}>Details</h2>
 
-      <div className={styles.details}>
+      <div className={styles.results}>
         {scores.map(({ pairing, winner }) => (
           <div key={`${pairing[0]}-${pairing[1]}`}>
             <span

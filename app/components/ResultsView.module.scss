@@ -15,13 +15,8 @@
   display: flex;
   flex-direction: column;
   gap: $gutter / 3;
-}
-
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: $gutter / 2;
   margin-top: -$gutter / 2;
+  margin-bottom: $gutter;
 }
 
 .winner {

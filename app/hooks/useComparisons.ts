@@ -22,7 +22,10 @@ const useComparison = () => {
     setScores([...scores, { pairing, winner }]);
 
     if (index + 1 >= pairings.length) {
-      setAppState(AppState.results);
+      // delay for animation before showing results
+      setTimeout(() => {
+        setAppState(AppState.results);
+      }, 1000);
     } else {
       setIndex(index + 1);
     }
@@ -32,12 +35,9 @@ const useComparison = () => {
     setAppState(AppState.initial);
   };
 
-  const currentPairing = pairings[index];
-
   return {
     appState,
     pairings,
-    currentPairing,
     scores,
     index,
 

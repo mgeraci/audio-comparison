@@ -1,6 +1,7 @@
 "use client";
 
-import { Ref } from "react";
+import { Ref, useState } from "react";
+import classNames from "classnames";
 import SpeakerIcon from "@/public/speaker.svg";
 
 // import speakerIcon from "../speaker.svg";
@@ -8,7 +9,7 @@ import styles from "./SampleView.module.scss";
 
 interface Props {
   sample: string;
-  ref: Ref<HTMLAudioElement>;
+  ref: Ref<HTMLAudioElement> | undefined;
   isPlaying: boolean;
   play: () => void;
   stop: () => void;
@@ -25,9 +26,12 @@ const SampleView: React.FC<Props> = ({
   resetTime,
   endRound,
 }) => {
+  const [isWinner, setIsWinner] = useState<boolean>(false);
+
   return (
-    <div className={styles.sample}>
+    <div className={classNames(styles.sample, { [styles.winner]: isWinner })}>
       <audio ref={ref} src={`../audio/${sample}`} />
+
       <div className={styles.playbackControls}>
         <button className={styles.playbackButton} onClick={resetTime}>
           ◀<span className={styles.backButtonPipe}>|</span>
@@ -40,7 +44,13 @@ const SampleView: React.FC<Props> = ({
         </button>
       </div>
 
-      <button className={styles.voteButton} onClick={endRound}>
+      <button
+        className={styles.voteButton}
+        onClick={() => {
+          setIsWinner(true);
+          endRound();
+        }}
+      >
         choose winner
       </button>
 

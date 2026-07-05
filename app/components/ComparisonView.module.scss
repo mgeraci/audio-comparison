@@ -11,12 +11,34 @@
   @include h2;
 }
 
+.samplesContainer {
+  position: relative;
+}
+
 .samples {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: $gutter;
   gap: $gutter / 2;
+
+  &.current {
+    position: relative;
+  }
+
+  &.exit {
+    transition:
+      transform 400ms ease-out,
+      opacity 400ms ease-out;
+    transition-delay: 500ms;
+    transform: translateY(100px);
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .versus {
